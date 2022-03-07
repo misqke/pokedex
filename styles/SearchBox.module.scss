@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background-color: #313131;
+  color: #fff;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 300;
+    margin: 5px 0;
+  }
+  p {
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+.search_box {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  input {
+    height: 2.75rem;
+    width: 75%;
+    border-radius: 5px;
+    border: 3px solid #878787;
+    padding: 0 0.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+.search_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 2rem;
+  width: 13.25%;
+  height: 48px;
+  background-color: #ee6b2f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.banner {
+  margin-top: 3rem;
+  background-color: #4dad58;
+  padding: 1rem 1rem 1.5rem;
+  border-radius: 5px;
+  position: relative;
+  left: -1.5rem;
+  width: 105%;
+  h2 {
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .box,
+  .banner {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .container {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .box,
+  .banner {
+    width: 45%;
+    max-width: 450px;
+  }
+  .banner {
+    left: 0;
+    margin-top: 0;
+    align-self: flex-start;
+  }
+}

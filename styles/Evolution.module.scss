@@ -1,0 +1,104 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/body_gray_bg.png");
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 8px;
+}
+
+.title {
+  align-self: flex-start;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+.evo_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  max-width: 400px;
+  cursor: pointer;
+  h4 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0.5rem;
+  }
+  span {
+    color: #a4acaf;
+  }
+}
+
+.box,
+.content_box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.img_box {
+  width: 110px;
+  height: 110px;
+  background-color: #616161;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0px 2px 2px 2px #333;
+}
+
+.type_box {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  justify-content: center;
+}
+
+.type {
+  text-align: center;
+  width: 45%;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1rem;
+  span {
+    min-width: 30px;
+    min-height: 8px;
+    background-color: #fff;
+  }
+  span:first-child {
+    transform-origin: right;
+    transform: rotateZ(45deg) translateX(2.75px);
+  }
+  span:last-child {
+    transform-origin: left;
+    transform: rotateZ(-45deg) translateX(-2.75px);
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .content_box {
+    flex-direction: row;
+  }
+  .evo_box {
+    flex-direction: row;
+  }
+  .arrow {
+    transform: rotateZ(-90deg) translateX(15px);
+    justify-content: flex-start;
+  }
+}
