@@ -51,6 +51,7 @@ const PokemonPage = ({ pokemon }) => {
                 src={pokemon.img.large}
                 width={475}
                 height={475}
+                priority
                 layout="responsive"
               ></Image>
             </div>
@@ -139,7 +140,7 @@ export const getServerSideProps = async (context) => {
   );
   return {
     props: {
-      pokemon: data.data,
+      pokemon: data.data.data,
     },
   };
 };

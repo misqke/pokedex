@@ -91,6 +91,10 @@
 }
 
 @media screen and (min-width: 960px) {
+  .container {
+    padding: 1rem 1rem 2rem;
+    gap: 1.5rem;
+  }
   .content_box {
     flex-direction: row;
   }
@@ -100,5 +104,9 @@
   .arrow {
     transform: rotateZ(-90deg) translateX(15px);
     justify-content: flex-start;
+  }
+  .img_box {
+    width: 150px;
+    height: 150px;
   }
 }

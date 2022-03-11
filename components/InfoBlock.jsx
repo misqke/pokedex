@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../styles/InfoBlock.module.scss";
 
 const InfoBlock = ({ info }) => {
@@ -6,13 +6,6 @@ const InfoBlock = ({ info }) => {
     return (e) => {
       const abilityDesc = document.querySelector(`#${ability}`);
       abilityDesc.classList.toggle(styles.active);
-    };
-  };
-
-  const handleCloseClick = (ability) => {
-    return (e) => {
-      console.log(e.target.classList);
-      e.target.classList.remove(styles.active);
     };
   };
 
