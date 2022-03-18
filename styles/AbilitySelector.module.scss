@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: #313131;
+  gap: 1rem;
+  position: relative;
+  p {
+    color: #fff;
+  }
+}
+
+.pokeBall {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  right: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 40px;
+  border-radius: 5px;
+  font-size: 40px;
+}
+
+.btn:hover {
+  background-color: #000;
+}
+
+.selection {
+  display: flex;
+  height: 300px;
+  z-index: 10;
+  padding: 10px;
+  background-color: #a4a4a4;
+  position: absolute;
+  bottom: 12px;
+}
+
+.selectionBox {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  background-color: #a4a4a4;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #313131 #a4a4a4;
+}
+
+.selectionBox::-webkit-scrollbar {
+  background: #a4a4a4;
+}
+
+.selectionBox::-webkit-scrollbar-thumb {
+  background: #313131;
+}
+.selectionBox::-webkit-scrollbar-button:single-button {
+  background: url(/caret-up-fill.svg);
+  width: 24px;
+}
+.selectionBox::-webkit-scrollbar-button:single-button:end {
+  background: url(/caret-down-fill.svg);
+}
+
+.ability {
+  padding: 12px 5% 10px;
+  cursor: pointer;
+}
+
+.ability:hover {
+  background-color: #313131;
+  color: #4dad5b;
+}

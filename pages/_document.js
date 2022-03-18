@@ -7,9 +7,10 @@ export default function Document() {
         <meta name="description" content="pokedex clone" />
         <link rel="icon" href="/favicon.ico" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+          href="//fonts.googleapis.com/css?family=Roboto:400,700"
           rel="stylesheet"
-        ></link>
+          type="text/css"
+        />
       </Head>
       <body>
         <Main />

@@ -43,9 +43,30 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
-  justify-content: space-evenly;
+  gap: 1.25rem;
   width: 100%;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1rem;
+}
+
+.noResults {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  border: 1px solid #f00;
+  border-radius: 5px;
+  padding: 1rem 1rem 0;
+  gap: 1rem;
+  color: #919191;
+  h4 {
+    font-size: 20px;
+    color: #f00;
+    font-weight: 400;
+  }
+  li {
+    margin-left: 1rem;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 461px) {

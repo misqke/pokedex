@@ -1,0 +1,252 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #616161;
+  margin-bottom: 2rem;
+  padding: 2rem 0 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 0px;
+  width: 100vw;
+  max-width: 1200px;
+  padding: 0 2rem;
+  justify-content: center;
+  font-family: "flexo-medium";
+  gap: 2rem;
+  overflow-y: hidden;
+}
+
+.open {
+  height: inherit;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.types {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+
+  p {
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.title {
+  color: #fff;
+  font-size: 27px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.types_box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.type_box {
+  display: flex;
+  width: 50%;
+  margin-bottom: 8px;
+}
+
+.type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  max-width: 114px;
+  height: 32px;
+  border-radius: 5px;
+  border: 1.75px solid #959595;
+  margin-right: 5%;
+}
+
+.type_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-weight: 600;
+  color: #313131;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.num_range {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.num_range_box {
+  display: flex;
+  gap: 1rem;
+  font-size: 2rem;
+  input {
+    width: 75px;
+    height: 40px;
+    font-size: 1rem;
+    padding: 2px 5px;
+    border-radius: 5px;
+    border: none;
+  }
+}
+
+.ability_selector {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.height {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heightBtnBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heightBtn {
+  width: 29%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  button {
+    width: 100%;
+    height: 47px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.searchBtn {
+  background-color: #ee6b25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.resetBtn {
+  background-color: #a4a4a4;
+}
+
+.openBtn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  span {
+    position: relative;
+    width: 50%;
+    top: 18px;
+    height: 18.5px;
+    background-color: #616161;
+    text-align: center;
+  }
+  span:last-child:before {
+    content: "";
+    background-image: url(/large-notch-darkgray.png);
+    position: absolute;
+    left: -38px;
+    width: 38px;
+    height: 18px;
+    transform-origin: left;
+    transform: rotateX(180deg);
+  }
+  span:last-child:after {
+    content: "";
+    background-image: url(/large-notch-darkgray.png);
+    position: absolute;
+    right: 0;
+    width: 38px;
+    height: 18px;
+    transform-origin: right;
+    transform: rotateY(180deg) rotateX(180deg);
+  }
+}
+
+@media screen and (min-width: 460px) {
+  .buttons {
+    flex-direction: row-reverse;
+    gap: 2rem;
+    button {
+      width: 45%;
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .container {
+    align-items: center;
+  }
+  .form {
+    flex-direction: row;
+    padding: 0 3rem;
+    gap: 0;
+  }
+  .box {
+    width: 50%;
+  }
+  .num_range {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 1rem;
+  }
+  .buttons {
+    justify-content: flex-start;
+    gap: 1rem;
+    button {
+      height: 53px;
+    }
+    .searchBtn {
+      width: 139px;
+    }
+    .resetBtn {
+      width: 102px;
+    }
+  }
+}

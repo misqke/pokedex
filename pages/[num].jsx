@@ -69,11 +69,9 @@ const PokemonPage = ({ pokemon }) => {
                 >
                   <div
                     className={styles.desc_btn}
-                    style={{ backgroundColor: "#0072b0" }}
                     onClick={handleDescClick(1)}
-                  >
-                    <Image src="/pokeball.png" width={30} height={30}></Image>
-                  </div>
+                    style={{ backgroundImage: "url('/pokeball-blue.png')" }}
+                  ></div>
                 </div>
                 <div
                   id="desc2"
@@ -82,11 +80,9 @@ const PokemonPage = ({ pokemon }) => {
                 >
                   <div
                     className={styles.desc_btn}
-                    style={{ backgroundColor: "#dd2d51" }}
                     onClick={handleDescClick(2)}
-                  >
-                    <Image src="/pokeball.png" width={30} height={30}></Image>
-                  </div>
+                    style={{ backgroundImage: "url('/pokeball-red.png')" }}
+                  ></div>
                 </div>
               </div>
             </div>
