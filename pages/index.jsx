@@ -3,42 +3,93 @@ import Head from "next/head";
 import SearchBox from "../components/SearchBox";
 import PokemonCard from "../components/PokemonCard";
 import AdvancedSearch from "../components/AdvancedSearch/AdvancedSearch";
+import FiltersBox from "../components/FiltersBox";
 import axios from "axios";
 import styles from "../styles/Home.module.scss";
+
+const compareSearch = (obj1, obj2) => {
+  const obj1Keys = Object.keys(obj1);
+  const obj2Keys = Object.keys(obj2);
+  const obj1Values = Object.values(obj1);
+  const obj2Values = Object.values(obj2);
+  if (obj1Keys.length !== obj2Keys.length) {
+    return false;
+  }
+  let match = true;
+  for (let i = 0; i < obj1Keys.length; i++) {
+    if (obj1Keys[i] !== obj2Keys[i] || obj1Values[i] !== obj2Values[i]) {
+      match = false;
+    }
+  }
+  return match;
+};
 
 export default function Home() {
   const [pokemon, setPokemon] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [search, setSearch] = useState("");
+  const [advancedSearch, setAdvancedSearch] = useState({});
+  const [random, setRandom] = useState(false);
+  const [sort, setSort] = useState("01");
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
 
-  const handleSubmitSearch = async () => {
-    const data = await axios.get(
-      `http://localhost:8000/api/?search=${search}&page=${page}`
-    );
-    setPokemon(data.data.data);
-    setPages(data.data.pages);
+  const handleSortChange = (sortValue) => {
+    setRandom(false);
+    setPage(1);
+    setSort(sortValue);
   };
 
-  const handleAdvancedSearch = async (reqBody) => {
-    console.log(reqBody);
-    const data = await axios.post("http://localhost:8000/api", reqBody);
-    setPokemon(data.data.data);
-    setPages(data.data.pages);
-    const display = document.querySelector("#search_display");
-    display.scrollIntoView();
+  const handleAdvancedSearch = async (reqBody = advancedSearch) => {
+    setRandom(false);
+    const request = { ...reqBody, search };
+    if (!compareSearch(request, advancedSearch) || page === 1) {
+      setAdvancedSearch(request);
+      setPage(1);
+      const pokemon = await axios.post(
+        `${process.env.SERVER}/api/?page=${1}&sort=${sort}`,
+        request
+      );
+      setPokemon(pokemon.data.data);
+      setPages(pokemon.data.pages);
+    } else if (compareSearch(request, advancedSearch)) {
+      const pokemon = await axios.post(
+        `${process.env.SERVER}/api/?page=${page}&sort=${sort}`,
+        request
+      );
+      setPokemon((prev) => [...prev, ...pokemon.data.data]);
+    }
+    if ((search || Object.keys(request).includes("minNum")) && page === 1) {
+      const display = document.querySelector("#search_display");
+      display.scrollIntoView();
+    }
+  };
+
+  const handleRandomPokemon = async (currentPokemon) => {
+    const pokemonNames = currentPokemon.map((pokemon) => pokemon.name);
+    const reqBody = { pokemon: pokemonNames };
+    const data = await axios.post(`${process.env.SERVER}/api/random`, reqBody);
+    if (currentPokemon.length === 0) {
+      setRandom(true);
+      setPokemon(data.data.data);
+    } else {
+      setPokemon((prev) => [...prev, ...data.data.data]);
+    }
   };
 
   useEffect(() => {
-    handleSubmitSearch();
-  }, []);
+    if (random) {
+      handleRandomPokemon(pokemon);
+    } else if (!random) {
+      handleAdvancedSearch(advancedSearch);
+    }
+  }, [page, sort]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="home_page">
       <Head>
         <title>Pokedex</title>
       </Head>
@@ -48,12 +99,15 @@ export default function Home() {
           <SearchBox
             search={search}
             setSearch={handleSearchChange}
-            submitSearch={handleSubmitSearch}
-            handleSubmit={handleSubmitSearch}
+            handleAdvancedSearch={handleAdvancedSearch}
           />
           <AdvancedSearch search={handleAdvancedSearch} />
         </div>
         <div className={styles.box}>
+          <FiltersBox
+            randomSearch={handleRandomPokemon}
+            handleSortChange={handleSortChange}
+          />
           <div className={styles.search_display} id="search_display">
             {pokemon.length > 0 ? (
               pokemon.map((pokemon) => (
@@ -71,6 +125,13 @@ export default function Home() {
               </div>
             )}
           </div>
+          {page < pages && (
+            <div className={styles.loadMore}>
+              <button type="button" onClick={() => setPage((prev) => prev + 1)}>
+                Load more Pokemon
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

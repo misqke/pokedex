@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 1rem;
+}
+
+.randomBtn {
+  width: 100%;
+  height: 49px;
+  background-color: #30a7d7;
+  color: #fff;
+  font-weight: 550;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.filterDisplay {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+  background-color: #313131;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+}
+
+.openBtn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  right: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 40px;
+  border-radius: 5px;
+  font-size: 40px;
+}
+
+.openBtn:hover {
+  background-color: #000;
+}
+
+.filterOptions {
+  display: flex;
+  z-index: 10;
+  background-color: #616161;
+  position: absolute;
+  top: 40px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #616161;
+  color: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  span {
+    height: 39px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+  }
+  span:hover {
+    background-color: #313131;
+  }
+}
+
+@media screen and (min-width: 461px) {
+  .box {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .container {
+    padding-top: 2rem;
+  }
+  .box {
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .randomBtn {
+    width: 325px;
+  }
+  .filter {
+    width: 345px;
+  }
+}

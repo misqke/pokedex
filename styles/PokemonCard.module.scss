@@ -4,6 +4,9 @@
   width: 95%;
   margin-bottom: 3rem;
   position: relative;
+  animation-duration: 150ms;
+  animation-timing-function: ease-in;
+  opacity: 1;
   span {
     color: #757575;
     font-family: "Roboto", sans-serif;
@@ -17,9 +20,63 @@
   }
 }
 
+.container.enterRight {
+  animation-name: enterRight;
+}
+.container.enterLeft {
+  animation-name: enterLeft;
+}
+.container.enterTop {
+  animation-name: enterTop;
+}
+.container.enterBottom {
+  animation-name: enterBottom;
+}
+
 .container:hover {
   animation-name: bounce;
   animation-duration: 500ms;
+}
+
+@keyframes enterLeft {
+  0% {
+    left: -1rem;
+    opacity: 0.75;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes enterRight {
+  0% {
+    right: -1rem;
+    opacity: 0.75;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+@keyframes enterTop {
+  0% {
+    top: -1rem;
+    opacity: 0.75;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes enterBottom {
+  0% {
+    bottom: -1rem;
+    opacity: 0.75;
+  }
+  100% {
+    bottom: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes bounce {

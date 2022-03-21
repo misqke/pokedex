@@ -272,7 +272,7 @@ const AdvancedSearch = ({ search }) => {
               </div>
             </div>
           </section>
-          <sesction className={styles.buttons}>
+          <section className={styles.buttons}>
             <button className={styles.searchBtn} type="submit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +293,7 @@ const AdvancedSearch = ({ search }) => {
             >
               RESET
             </button>
-          </sesction>
+          </section>
         </div>
       </form>
       <div className={styles.openBtn} onClick={() => setOpen((prev) => !prev)}>

@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import Router from "next/router";
 import styles from "../styles/PokemonCard.module.scss";
 import getTypeStyles from "../util/getTypeStyle";
 
 const PokemonCard = ({ pokemon }) => {
+  const randomNum = useMemo(() => Math.floor(Math.random() * 4));
+
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container}`}
+      // ${
+      //   randomNum === 0
+      //     ? styles.enterTop
+      //     : randomNum === 1
+      //     ? styles.enterBottom
+      //     : randomNum === 2
+      //     ? styles.enterLeft
+      //     : styles.enterRight
+      // }
+    >
       <div
         className={styles.img_container}
         onClick={() => Router.push(`/${pokemon.number}`)}

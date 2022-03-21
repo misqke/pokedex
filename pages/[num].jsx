@@ -10,7 +10,6 @@ import Evolution from "../components/Evolution";
 import getTypeStyle from "../util/getTypeStyle";
 
 const PokemonPage = ({ pokemon }) => {
-  pokemon = pokemon[0];
   const [desc, setDesc] = useState(pokemon.desc1);
 
   const handleDescClick = (num) => {
@@ -132,7 +131,7 @@ export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
   const data = await axios.get(
-    `http://localhost:8000/api/?search=${context.params.num}`
+    `${process.env.SERVER}/api/?num=${context.params.num}`
   );
   return {
     props: {
