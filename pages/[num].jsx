@@ -28,6 +28,9 @@ const PokemonPage = ({ pokemon }) => {
       }
     };
   };
+  if (!pokemon) {
+    return <div>loading</div>;
+  }
 
   return (
     <div className={styles.container}>
@@ -131,11 +134,11 @@ export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
   const data = await axios.get(
-    `http://localhost:3000/api/pokemon/?num=${context.params.num}`
+    `${process.env.CLIENT}/api/pokemon/?num=${context.params.num}`
   );
   return {
     props: {
-      pokemon: data.data.data.data,
+      pokemon: data.data.data,
     },
   };
 };
