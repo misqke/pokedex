@@ -131,11 +131,11 @@ export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
   const data = await axios.get(
-    `${process.env.SERVER}/api/?num=${context.params.num}`
+    `http://localhost:3000/api/pokemon/?num=${context.params.num}`
   );
   return {
     props: {
-      pokemon: data.data.data,
+      pokemon: data.data.data.data,
     },
   };
 };
