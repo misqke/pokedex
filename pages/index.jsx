@@ -56,14 +56,14 @@ export default function Home() {
       setAdvancedSearch(request);
       setPage(1);
       const pokemon = await axios.post(
-        `http://localhost:8000/api/?page=${1}&sort=${sort}`,
+        `https://misqke-pokemon-api.herokuapp.com/api/?page=${1}&sort=${sort}`,
         request
       );
       setPokemon(pokemon.data.data);
       setPages(pokemon.data.pages);
     } else if (compareSearch(request, advancedSearch)) {
       const pokemon = await axios.post(
-        `http://localhost:8000/api/?page=${page}&sort=${sort}`,
+        `https://misqke-pokemon-api.herokuapp.com/api/?page=${page}&sort=${sort}`,
         request
       );
       setPokemon((prev) => [...prev, ...pokemon.data.data]);
@@ -77,7 +77,10 @@ export default function Home() {
   const handleRandomPokemon = async (currentPokemon) => {
     const pokemonNames = currentPokemon.map((pokemon) => pokemon.name);
     const reqBody = { pokemon: pokemonNames };
-    const data = await axios.post(`http://localhost:8000/api/random`, reqBody);
+    const data = await axios.post(
+      `https://misqke-pokemon-api.herokuapp.com/api/random`,
+      reqBody
+    );
     if (currentPokemon.length === 0) {
       setRandom(true);
       setPokemon(data.data.data);
