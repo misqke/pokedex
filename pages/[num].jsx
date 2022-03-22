@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import styles from "../styles/PokemonPage.module.scss";
 import Image from "next/image";
@@ -11,19 +11,19 @@ import getTypeStyle from "../util/getTypeStyle";
 
 const PokemonPage = ({ pokemon }) => {
   const [desc, setDesc] = useState(pokemon.desc1);
+  const btn1ref = useRef();
+  const btn2ref = useRef();
 
   const handleDescClick = (num) => {
     return () => {
-      const btn1 = document.querySelector("#desc1");
-      const btn2 = document.querySelector("#desc2");
       if (num === 1) {
-        btn1.classList.add(styles.active_ring);
-        btn2.classList.remove(styles.active_ring);
+        btn1ref.current.classList.add(styles.active_ring);
+        btn2ref.current.classList.remove(styles.active_ring);
         setDesc(pokemon.desc1);
       }
       if (num === 2) {
-        btn2.classList.add(styles.active_ring);
-        btn1.classList.remove(styles.active_ring);
+        btn2ref.current.classList.add(styles.active_ring);
+        btn1ref.current.classList.remove(styles.active_ring);
         setDesc(pokemon.desc2);
       }
     };
@@ -31,6 +31,8 @@ const PokemonPage = ({ pokemon }) => {
 
   useEffect(() => {
     setDesc(pokemon.desc1);
+    btn1ref.current.classList.add(styles.active_ring);
+    btn2ref.current.classList.remove(styles.active_ring);
   }, [pokemon]);
 
   if (!pokemon) {
@@ -70,6 +72,7 @@ const PokemonPage = ({ pokemon }) => {
               <div>
                 Versions:
                 <div
+                  ref={btn1ref}
                   id="desc1"
                   className={`${styles.ring} ${styles.active_ring}`}
                   style={{ borderColor: "#0072b0" }}
@@ -81,6 +84,7 @@ const PokemonPage = ({ pokemon }) => {
                   ></div>
                 </div>
                 <div
+                  ref={btn2ref}
                   id="desc2"
                   className={styles.ring}
                   style={{ borderColor: "#dd2d51" }}
