@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import SearchBox from "../components/SearchBox";
 import PokemonCard from "../components/PokemonCard";
 import AdvancedSearch from "../components/AdvancedSearch/AdvancedSearch";
@@ -37,6 +38,11 @@ export default function Home() {
     setSearch(e.target.value);
   };
 
+  const scrollToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
+
   const handleSortChange = (sortValue) => {
     setRandom(false);
     setPage(1);
@@ -50,14 +56,14 @@ export default function Home() {
       setAdvancedSearch(request);
       setPage(1);
       const pokemon = await axios.post(
-        `https://misqke-pokemon-api.herokuapp.com/api/?page=${1}&sort=${sort}`,
+        `http://localhost:8000/api/?page=${1}&sort=${sort}`,
         request
       );
       setPokemon(pokemon.data.data);
       setPages(pokemon.data.pages);
     } else if (compareSearch(request, advancedSearch)) {
       const pokemon = await axios.post(
-        `https://misqke-pokemon-api.herokuapp.com/api/?page=${page}&sort=${sort}`,
+        `http://localhost:8000/api/?page=${page}&sort=${sort}`,
         request
       );
       setPokemon((prev) => [...prev, ...pokemon.data.data]);
@@ -71,10 +77,7 @@ export default function Home() {
   const handleRandomPokemon = async (currentPokemon) => {
     const pokemonNames = currentPokemon.map((pokemon) => pokemon.name);
     const reqBody = { pokemon: pokemonNames };
-    const data = await axios.post(
-      `https://misqke-pokemon-api.herokuapp.com/api/random`,
-      reqBody
-    );
+    const data = await axios.post(`http://localhost:8000/api/random`, reqBody);
     if (currentPokemon.length === 0) {
       setRandom(true);
       setPokemon(data.data.data);
@@ -91,13 +94,25 @@ export default function Home() {
     }
   }, [page, sort]);
 
+  useEffect(() => {
+    const searchBox = document.querySelector("#search_container");
+    const btn = document.querySelector("#scroll_btn");
+    const scrollObs = new IntersectionObserver(
+      (entry) => {
+        btn.classList.toggle(`${styles.visible}`, !entry[0].isIntersecting);
+      },
+      { threshold: 1 }
+    );
+    scrollObs.observe(searchBox);
+  }, []);
+
   return (
     <div className={styles.container} id="home_page">
       <Head>
-        <title>Pokedex</title>
+        <title id="title">Pokedex</title>
       </Head>
       <div className={styles.inner_container}>
-        <div className={styles.search_container}>
+        <div className={styles.search_container} id="search_container">
           <h1 className={styles.title}>Pokedex</h1>
           <SearchBox
             search={search}
@@ -113,8 +128,12 @@ export default function Home() {
           />
           <div className={styles.search_display} id="search_display">
             {pokemon.length > 0 ? (
-              pokemon.map((pokemon) => (
-                <PokemonCard key={pokemon.number} pokemon={pokemon} />
+              pokemon.map((pokemon, i) => (
+                <PokemonCard
+                  id={`card${i}`}
+                  key={pokemon.number}
+                  pokemon={pokemon}
+                />
               ))
             ) : (
               <div className={styles.noResults}>
@@ -137,6 +156,22 @@ export default function Home() {
           )}
         </div>
       </div>
+      {
+        <button
+          type="button"
+          id="scroll_btn"
+          className={`${styles.toTopBtn}`}
+          onClick={scrollToTop}
+        >
+          <Image
+            src={"/chevron-up.svg"}
+            width={20}
+            height={20}
+            layout="responsive"
+            alt="to top"
+          />
+        </button>
+      }
     </div>
   );
 }

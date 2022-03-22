@@ -29,6 +29,10 @@ const PokemonPage = ({ pokemon }) => {
     };
   };
 
+  useEffect(() => {
+    setDesc(pokemon.desc1);
+  }, [pokemon]);
+
   if (!pokemon) {
     return <div>Loading</div>;
   }
@@ -135,7 +139,7 @@ export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
   const data = await axios.get(
-    `https://misqke-pokemon-api.herokuapp.com/api/?num=${context.params.num}`
+    `http://localhost:8000/api/?num=${context.params.num}`
   );
   return {
     props: {

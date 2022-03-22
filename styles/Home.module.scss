@@ -8,6 +8,7 @@
 
 .container {
   background-color: #000c;
+  position: relative;
 }
 
 .inner_container {
@@ -91,6 +92,27 @@
   }
 }
 
+.toTopBtn {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  background-color: #31313181;
+  z-index: 20;
+  border-right: none;
+  border-bottom: none;
+  border-color: #515151;
+  border-top-left-radius: 8px;
+  padding: 1rem;
+  display: none;
+  cursor: pointer;
+}
+
+.toTopBtn.visible {
+  display: block;
+}
+
 @media screen and (min-width: 461px) {
   .container,
   .inner_container {
@@ -110,6 +132,12 @@
   }
   .search_display {
     justify-content: flex-start;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .toTopBtn.visible {
+    display: none;
   }
 }
 

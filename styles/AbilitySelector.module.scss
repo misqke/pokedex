@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .display {
@@ -46,7 +47,7 @@
   padding: 10px;
   background-color: #a4a4a4;
   position: absolute;
-  bottom: 12px;
+  top: 46px;
 }
 
 .selectionBox {

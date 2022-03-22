@@ -4,7 +4,8 @@ import styles from "../styles/InfoBlock.module.scss";
 const InfoBlock = ({ info }) => {
   const handleInfoClick = (ability) => {
     return (e) => {
-      const abilityDesc = document.querySelector(`#${ability}`);
+      const adjustedAbility = ability.split(" ").join("");
+      const abilityDesc = document.querySelector(`#${adjustedAbility}`);
       abilityDesc.classList.toggle(styles.active);
     };
   };
@@ -99,7 +100,7 @@ const InfoBlock = ({ info }) => {
       {info[4].value.map((ability) => (
         <div
           key={ability.name}
-          id={ability.name}
+          id={ability.name.split(" ").join("")}
           className={styles.ability_desc}
         >
           <h5>Ability Info</h5>
