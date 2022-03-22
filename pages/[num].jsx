@@ -10,7 +10,7 @@ import Evolution from "../components/Evolution";
 import getTypeStyle from "../util/getTypeStyle";
 
 const PokemonPage = ({ pokemon }) => {
-  const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState(pokemon.desc1);
 
   const handleDescClick = (num) => {
     return () => {
