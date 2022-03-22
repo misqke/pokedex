@@ -10,7 +10,7 @@ import Evolution from "../components/Evolution";
 import getTypeStyle from "../util/getTypeStyle";
 
 const PokemonPage = ({ pokemon }) => {
-  const [desc, setDesc] = useState(pokemon.desc1);
+  const [desc, setDesc] = useState("");
 
   const handleDescClick = (num) => {
     return () => {
@@ -28,8 +28,9 @@ const PokemonPage = ({ pokemon }) => {
       }
     };
   };
+
   if (!pokemon) {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
 
   return (
@@ -134,7 +135,7 @@ export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
   const data = await axios.get(
-    `https://misqke-pokemon-api.herokuapp.com/api//?num=${context.params.num}`
+    `https://misqke-pokemon-api.herokuapp.com/api/?num=${context.params.num}`
   );
   return {
     props: {
