@@ -56,14 +56,14 @@ export default function Home() {
       setAdvancedSearch(request);
       setPage(1);
       const pokemon = await axios.post(
-        `https://misqke-pokemon-api.herokuapp.com/api/?page=${1}&sort=${sort}`,
+        `https://misqke-pokemon-api.herokuapp.com/api/search/?page=${1}&sort=${sort}`,
         request
       );
       setPokemon(pokemon.data.data);
       setPages(pokemon.data.pages);
     } else if (compareSearch(request, advancedSearch)) {
       const pokemon = await axios.post(
-        `https://misqke-pokemon-api.herokuapp.com/api/?page=${page}&sort=${sort}`,
+        `https://misqke-pokemon-api.herokuapp.com/api/search/?page=${page}&sort=${sort}`,
         request
       );
       setPokemon((prev) => [...prev, ...pokemon.data.data]);
