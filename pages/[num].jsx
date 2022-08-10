@@ -142,9 +142,7 @@ const PokemonPage = ({ pokemon }) => {
 export default PokemonPage;
 
 export const getServerSideProps = async (context) => {
-  const data = await axios.get(
-    `https://misqke-pokemon-api.herokuapp.com/api/search/?num=${context.params.num}`
-  );
+  const data = await axios.get(`api/search/?num=${context.params.num}`);
   return {
     props: {
       pokemon: data.data.data,

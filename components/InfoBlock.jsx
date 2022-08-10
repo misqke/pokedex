@@ -60,7 +60,7 @@ const InfoBlock = ({ info }) => {
             )}
             {!info[2].value.includes("Male") &&
               !info[2].value.includes("Female") && (
-                <p className={styles.value}>{info[2].value}</p>
+                <span className={styles.value}>{info[2].value}</span>
               )}
           </p>
         </section>
